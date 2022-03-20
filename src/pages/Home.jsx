@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { GridCards } from '../components/GridCards';
 import { loadPokemon } from '../utils/load-pokemons';
 
+import '../styles/home.scss';
+
 export function Home() {
 
     const [pokemonsArray, setPokemonsArray] = useState([]);

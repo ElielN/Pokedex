@@ -1,5 +1,7 @@
 import {PokeCard} from '../PokeCard';
 
+import './styles.scss';
+
 type pokemonType = {
     name: string,
     url: string
