@@ -15,7 +15,7 @@ export function GridCards({pokemons = []}: gridCardsType) {
         <div className='grid-cards'>
             {pokemons.map(pokemons => (
                 <PokeCard 
-                    key={0}
+                    key={pokemons.name}
                     url={pokemons.url}
                     pokemonName={pokemons.name}
                 />
