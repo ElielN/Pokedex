@@ -9,6 +9,26 @@
 
     z-index: 1;
 
+    .card-id {
+        width: 100%;
+        
+        text-align: left;
+        //background: black;
+        
+        top: 0;
+        left: 0;
+
+        span {
+            padding: 7px 5px 7px 7px;
+            border-radius: 0 0 10px 0;
+
+            background: #93ff50;
+
+            font-size: 12px;
+            font-family: 'Press Start 2P', cursive;
+        }
+    }
+
     img {
         height: 100px;
         width: 100px;

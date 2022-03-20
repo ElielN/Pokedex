@@ -44,12 +44,14 @@ export function PokeCard({pokemonName, url}: pokeCardType) {
     return (
         <div className="poke-card">
             {fetchLoading ?
-            (<h1>Loading data</h1>) 
+            (<h1>Loading data...</h1>) 
             : 
-            <>
+            <>  
+                <div className="card-id">
+                    <span>Nº {pokemonId}</span>
+                </div>
                 <img src={sprite} alt='poketest'/>
                 <div className="card-content-text">
-                    <p>Nº {pokemonId}</p>
                     <h1>{name}</h1>
                     <div className="pokemon-types">
                         {pokemonType?.map(type => (
