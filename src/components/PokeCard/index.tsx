@@ -24,8 +24,6 @@ export function PokeCard({pokemonName, url}: pokeCardType) {
             const [data] = await Promise.all([pokemonDataFetch]);
             const dataJson = await data.json();
 
-            //console.log('dataJson pokeCard: ', dataJson);
-
             setPokemonId(dataJson['id']);
             setName(dataJson['name']);
             setSprite(dataJson['sprites']['front_default']);
@@ -36,8 +34,6 @@ export function PokeCard({pokemonName, url}: pokeCardType) {
                 typesArray.push(dataJson['types'][element]['type']['name']);
             }
             setPokemonType(typesArray)
-
-            console.log(typesArray)
 
             setFetchLoading(false);
         };
