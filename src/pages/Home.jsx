@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { GridCards } from '../components/GridCards';
 import { loadPokemon } from '../utils/load-pokemons';
+import { motion } from "framer-motion";
 
 import pokeball from '../assets/images/pokeball-icon.svg';
 import pokemonLogo from '../assets/images/pokemon-logo.svg';
@@ -32,6 +33,18 @@ export function Home() {
                 <img src={pokemonLogo} alt='pokemon logo'/>
             </div>
             <GridCards pokemons={pokemonsArray} />
+            <div className='pokeball-button-container'>
+                <motion.div 
+                whileHover=
+                {{rotate: 360,
+                transition: {duration: 0.5}
+                }}
+                
+                className='pokeball-button'
+                >
+                    <img src={pokeball} alt='pokeball button'/>
+                </motion.div>
+            </div>
         </div>
     );
 }

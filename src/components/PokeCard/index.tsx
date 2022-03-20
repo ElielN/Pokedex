@@ -48,7 +48,9 @@ export function PokeCard({pokemonName, url}: pokeCardType) {
             : 
             <>  
                 <div className="card-id">
-                    <span>Nº {pokemonId}</span>
+                    <div className="card-id-container">
+                        <span>Nº {pokemonId}</span>
+                    </div>
                 </div>
                 <img src={sprite} alt='poketest'/>
                 <div className="card-content-text">
