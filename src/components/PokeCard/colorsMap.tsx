@@ -1,0 +1,20 @@
+export const colorsMap: {[key:string]: string} = {
+    "normal": "rgba(232, 232, 232, 1.0)",
+    "fire": "rgba(255, 152, 142, 1.0)",
+    "water": "rgba(122, 195, 245, 1.0)",
+    "grass": "rgba(117, 233, 166, 1.0)",
+    "flying": "rgba(253, 248, 228, 1.0)",
+    "fighting": "rgba(243, 216, 213, 1.0)",
+    "poison": "rgba(202, 151, 222, 1.0)",
+    "electric": "rgba(250, 255, 143, 1.0)",
+    "ground": "rgba(244, 167, 117, 1.0)",
+    "rock": "rgba(194, 194, 194, 1.0)",
+    "psychic": "rgba(233, 211, 242, 1.0)",
+    "ice": "rgba(188, 241, 255, 1.0)",
+    "bug": "rgba(249, 236, 255, 1.0)",
+    "ghost": "rgba(157, 255, 247, 1.0)",
+    "steel": "rgba(210, 215, 221, 1.0)",
+    "dragon": "rgba(195, 95, 84, 1.0)",
+    "dark": "rgba(62, 54, 53, 1.0)",
+    "fairy": "rgba(249, 129, 255, 1.0)"
+}

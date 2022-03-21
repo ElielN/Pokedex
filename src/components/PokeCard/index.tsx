@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from 'framer-motion';
-
 import { PokemonType } from '../PokemonType'
+
+import { colorsMap } from './colorsMap';
 
 import './styles.scss';
 
@@ -16,8 +17,11 @@ export function PokeCard({pokemonName, url}: pokeCardType) {
     const [name, setName] = useState(pokemonName);
     const [sprite, setSprite] = useState('');
     const [pokemonType, setPokemonType] = useState<string[]>();
-
     const [fetchLoading, setFetchLoading] = useState(true);
+    const typesArrayColors: string[] = [];
+
+    const colorA = useRef('#fff');
+    const colorB = useRef('#fff');
 
     useEffect(() => {
         setFetchLoading(true);
@@ -34,9 +38,17 @@ export function PokeCard({pokemonName, url}: pokeCardType) {
 
             for(var element in dataJson['types']) {
                 typesArray.push(dataJson['types'][element]['type']['name']);
+                typesArrayColors.push(dataJson['types'][element]['type']['name']);
             }
-            setPokemonType(typesArray)
 
+            if(typesArrayColors.length < 2) {
+                typesArrayColors.push(dataJson['types'][0]['type']['name']);
+            }
+
+            colorA.current = colorsMap[typesArrayColors[0]].toString();
+            colorB.current = colorsMap[typesArrayColors[1]].toString();
+            
+            setPokemonType(typesArray)
             setFetchLoading(false);
         };
         fetchPokemonData(url)
@@ -46,6 +58,7 @@ export function PokeCard({pokemonName, url}: pokeCardType) {
     return (
         <motion.div 
         className="poke-card"
+        style={{background: `linear-gradient(${colorA.current}, ${colorB.current})`}}
         whileHover={{scale: 1.1, transition: {duration: 0.5}}}
         >
             {fetchLoading ?
@@ -64,8 +77,7 @@ export function PokeCard({pokemonName, url}: pokeCardType) {
                         {pokemonType?.map(type => (
                             <PokemonType 
                                 type={type}
-                            /> 
-                            
+                            />    
                         ))}
                     </div>
                 </div>
