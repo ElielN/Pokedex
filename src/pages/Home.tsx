@@ -10,7 +10,8 @@ import '../styles/home.scss';
 
 export function Home() {
 
-    const [pokemonsArray, setPokemonsArray] = useState([]);
+    const [pokemonsOffset, setPokemonsOffset] = useState(20);
+    const [pokemonsArray, setPokemonsArray] = useState<[] | any>([]);
 
     const handleLoadPosts = useCallback(async () => {
         
@@ -23,6 +24,26 @@ export function Home() {
     useEffect(() => {
         handleLoadPosts();
     }, [handleLoadPosts]);
+
+    function updateOffset(): Boolean {
+        const oldOffset = pokemonsOffset
+        const newPokemonsNumber = pokemonsOffset + 20;
+        setPokemonsOffset(newPokemonsNumber);
+        if(oldOffset < newPokemonsNumber) {
+            return true
+        }
+        return false;
+    }
+
+    async function handleLoadMorePokemons() {
+        if(updateOffset()) {
+            const limit = '20';
+            await loadPokemon(pokemonsOffset.toString(), limit)
+            .then(newPokemons => setPokemonsArray([...pokemonsArray, ...newPokemons]));
+            //console.log('newPokemons:',newPokemons)
+            //setPokemonsArray([...pokemonsArray, newPokemons])
+        }
+    };
 
     return (
         <div id='home-page'>
@@ -41,6 +62,7 @@ export function Home() {
                 }}
                 
                 className='pokeball-button'
+                onClick={() => handleLoadMorePokemons()}
                 >
                     <img src={pokeball} alt='pokeball button'/>
                 </motion.div>

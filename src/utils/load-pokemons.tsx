@@ -9,7 +9,7 @@ export async function loadPokemon( offset?: string, limit?: string ) {
         return pokemon;
     });
 
-    //console.log(justPokemons);
+    console.log('Just Pokemons: ',justPokemons);
 
     return justPokemons;
 };

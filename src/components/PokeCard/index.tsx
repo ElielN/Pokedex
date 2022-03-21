@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { motion } from 'framer-motion';
 
 import { PokemonType } from '../PokemonType'
 
@@ -19,6 +20,7 @@ export function PokeCard({pokemonName, url}: pokeCardType) {
     const [fetchLoading, setFetchLoading] = useState(true);
 
     useEffect(() => {
+        setFetchLoading(true);
         async function fetchPokemonData(url: string) {
             const pokemonDataFetch = fetch(url);
             const [data] = await Promise.all([pokemonDataFetch]);
@@ -42,7 +44,10 @@ export function PokeCard({pokemonName, url}: pokeCardType) {
 
 
     return (
-        <div className="poke-card">
+        <motion.div 
+        className="poke-card"
+        whileHover={{scale: 1.1, transition: {duration: 0.5}}}
+        >
             {fetchLoading ?
             (<h1>Loading data...</h1>) 
             : 
@@ -52,7 +57,7 @@ export function PokeCard({pokemonName, url}: pokeCardType) {
                         <span>Nº {pokemonId}</span>
                     </div>
                 </div>
-                <img src={sprite} alt='poketest'/>
+                <img src={sprite} alt={name}/>
                 <div className="card-content-text">
                     <h1>{name}</h1>
                     <div className="pokemon-types">
@@ -66,6 +71,6 @@ export function PokeCard({pokemonName, url}: pokeCardType) {
                 </div>
             </>
             }
-        </div>
+        </motion.div>
     );
 };
