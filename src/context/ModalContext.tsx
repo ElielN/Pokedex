@@ -4,7 +4,7 @@ type ModalValuesType = {
     id: number,
     name: string,
     sprite: string,
-    type: string[],
+    //type: string[],
     stats: {
         hp: number,
         attack: number,
@@ -18,10 +18,10 @@ type ModalValuesType = {
 }
 
 const modalValuesDefault = {
-    id: 0,
+    id: -1,
     name: '',
     sprite: '',
-    type: ['noType', 'noType'],
+    //type: ['noType', 'noType'],
     stats: {
         hp: 0,
         attack: 0,

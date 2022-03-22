@@ -28,29 +28,32 @@ export function PokeCard({pokemonName, url}: pokeCardType) {
     const colorB = useRef('#fff');
 
     const modalValuesRef = useRef({});
-    //Setar os valores de useRef dentro do useEffect. Quando o usuário
-    //clicar no card eu vou usar uma função para setar o modalValues
 
-    //A ideia é ficar com os valores de modalValuesRef retidos nos cards
-    //E passar esses valores pro Provider quando forem clicados
-
-    function updateModalValues() {
+    function handleUpdateModalValues(data: {[key: string | number]: any }) {
         const newValues = {
-            id: 0,
-            name: '',
-            sprite: '',
-            type: ['noType', 'noType'],
+            id: data['id'],
+            name: data['name'],
+            sprite: data['sprites']['front_default'],
+            //type: [data['types'][0]['type']['name'], data['types'][1]['type']['name']],
             stats: {
-                hp: 0,
-                attack: 0,
-                defense: 0,
-                special_attack: 0,
-                special_defense: 0,
-                speed: 0
+                hp: data['stats'][0]['base_stat'],
+                attack: data['stats'][1]['base_stat'],
+                defense: data['stats'][2]['base_stat'],
+                special_attack: data['stats'][3]['base_stat'],
+                special_defense: data['stats'][4]['base_stat'],
+                speed: data['stats'][5]['base_stat']
             },
-            weight: 0,
-            height: 0
+            weight: data['weight'],
+            height: data['height']
         }
+
+        modalValuesRef.current = newValues;
+        //console.log(modalValuesRef.current);
+    }
+
+    function handleRaiseModalValues() {
+        setModalValues(modalValuesRef.current)
+        //console.log(modalValues)
     }
 
     useEffect(() => {
@@ -75,6 +78,8 @@ export function PokeCard({pokemonName, url}: pokeCardType) {
                 typesArrayColors.push(dataJson['types'][0]['type']['name']);
             }
 
+            handleUpdateModalValues(dataJson);
+
             colorA.current = colorsMap[typesArrayColors[0]].toString();
             colorB.current = colorsMap[typesArrayColors[1]].toString();
             
@@ -90,6 +95,7 @@ export function PokeCard({pokemonName, url}: pokeCardType) {
         className="poke-card"
         style={{background: `linear-gradient(${colorA.current}, ${colorB.current})`}}
         whileHover={{scale: 1.1, transition: {duration: 0.5}}}
+        onClick={handleRaiseModalValues}
         >
             {fetchLoading ?
             (<h1>Loading data...</h1>) 
