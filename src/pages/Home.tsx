@@ -1,4 +1,3 @@
-import { useCallback, useEffect, useState } from 'react';
 import { GridCards } from '../components/GridCards';
 import { loadPokemon } from '../utils/load-pokemons';
 import { motion } from "framer-motion";
@@ -7,6 +6,7 @@ import pokeball from '../assets/images/pokeball-icon.svg';
 import pokemonLogo from '../assets/images/pokemon-logo.svg';
 
 import '../styles/home.scss';
+import { useCallback, useEffect, useState } from 'react';
 
 export function Home() {
 
@@ -40,8 +40,6 @@ export function Home() {
             const limit = '20';
             await loadPokemon(pokemonsOffset.toString(), limit)
             .then(newPokemons => setPokemonsArray([...pokemonsArray, ...newPokemons]));
-            //console.log('newPokemons:',newPokemons)
-            //setPokemonsArray([...pokemonsArray, newPokemons])
         }
     };
 

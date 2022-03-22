@@ -1,7 +1,6 @@
 .poke-card {
     display: flex;
     flex-direction: column;
-    //background: #fff;
     align-items: center;
     box-shadow: 0px 6px 2px 0px rgba(0, 0, 0, 0.2);
 
@@ -10,6 +9,8 @@
     overflow: hidden;
 
     z-index: 1;
+
+    cursor: pointer;
 
     .card-id {
         width: 100%;
@@ -43,8 +44,7 @@
     .card-content-text {
         display: flex;
         flex-direction: column;
-        text-align: start;
-        //align-items: flex-start;
+        text-align: center;
 
         color: #333;
 

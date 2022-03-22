@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { motion } from 'framer-motion';
 import { PokemonType } from '../PokemonType'
 
 import { colorsMap } from './colorsMap';
+import { ModalContext } from "../../context/ModalContext";
 
 import './styles.scss';
 
@@ -13,6 +14,9 @@ type pokeCardType = {
 
 
 export function PokeCard({pokemonName, url}: pokeCardType) {
+
+    const { modalValues, setModalValues } = useContext(ModalContext);
+
     const [pokemonId, setPokemonId] = useState(0);
     const [name, setName] = useState(pokemonName);
     const [sprite, setSprite] = useState('');
@@ -22,6 +26,32 @@ export function PokeCard({pokemonName, url}: pokeCardType) {
 
     const colorA = useRef('#fff');
     const colorB = useRef('#fff');
+
+    const modalValuesRef = useRef({});
+    //Setar os valores de useRef dentro do useEffect. Quando o usuário
+    //clicar no card eu vou usar uma função para setar o modalValues
+
+    //A ideia é ficar com os valores de modalValuesRef retidos nos cards
+    //E passar esses valores pro Provider quando forem clicados
+
+    function updateModalValues() {
+        const newValues = {
+            id: 0,
+            name: '',
+            sprite: '',
+            type: ['noType', 'noType'],
+            stats: {
+                hp: 0,
+                attack: 0,
+                defense: 0,
+                special_attack: 0,
+                special_defense: 0,
+                speed: 0
+            },
+            weight: 0,
+            height: 0
+        }
+    }
 
     useEffect(() => {
         setFetchLoading(true);
