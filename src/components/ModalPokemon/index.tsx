@@ -1,47 +1,25 @@
-import { useState } from 'react';
-import Modal from 'react-modal';
+import { useEffect } from "react";
 
-export function ModalPokemon() {
 
-    const customStyles = {
-        content: {
-          top: '50%',
-          left: '50%',
-          right: 'auto',
-          bottom: 'auto',
-          marginRight: '-50%',
-          transform: 'translate(-50%, -50%)',
-        },
-      };
-
-    let subtitle: { style: { color: string; }; };
-    const [modalIsOpen, setIsOpen] = useState(false);
-
-    function openModal() {
-        setIsOpen(true);
-    }
-
-    function afterOpenModal() {
-        // references are now sync'd and can be accessed.
-        subtitle.style.color = '#f00';
-    }
-
-    function closeModal() {
-        setIsOpen(false);
-    }
-
+export function Modal({modalValues}: {[key: string | number]: any }) {
+    
+    useEffect(() => {
+        console.log(modalValues)
+    });
+    
     return (
-        <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-        >
-            <h1>Modal test</h1>
-            <button onClick={() => closeModal()}>
-                Close Modal
-            </button>
-        </Modal>
+        <div className="modal-pokemon">
+            <div className="modal-sprite">
+                <img src={modalValues.sprite} alt={modalValues.name}/>
+            </div>
+            <div className="modal-attributes">
+                <p>{modalValues.stats.hp}</p>
+                <p>{modalValues.stats.attack}</p>
+                <p>{modalValues.stats.defense}</p>
+                <p>{modalValues.stats.special_attack}</p>
+                <p>{modalValues.stats.special_defense}</p>
+                <p>{modalValues.stats.speed}</p>
+            </div>
+        </div>
     );
 }

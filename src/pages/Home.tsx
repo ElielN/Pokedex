@@ -8,10 +8,12 @@ import pokemonLogo from '../assets/images/pokemon-logo.svg';
 import '../styles/home.scss';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { ModalContext } from '../context/ModalContext';
+import { Modal } from '../components/ModalPokemon';
 
 export function Home() {
 
     const { modalValues, setModalValues } = useContext(ModalContext);
+    const [modalUp, setModalUp] = useState(false);
 
     const [pokemonsOffset, setPokemonsOffset] = useState(20);
     const [pokemonsArray, setPokemonsArray] = useState<[] | any>([]);
@@ -24,12 +26,10 @@ export function Home() {
 
     }, []);
 
-    //Agora a partir deste useEffect eu preciso chamar a construção
-    //do modal ou então setar um booleano para que ela seja exibido
-    //no hrml (como um curto circuito)
     useEffect(() => {
         if(modalValues!['id'] !== -1) {
-            console.log(modalValues);
+            setModalUp(true);
+            //console.log(modalValues);
         }
     }, [modalValues]);
 
@@ -55,6 +55,7 @@ export function Home() {
         }
     };
 
+
     return (
         <div id='home-page'>
             <div className='image-background'>
@@ -77,6 +78,9 @@ export function Home() {
                     <img src={pokeball} alt='pokeball button'/>
                 </motion.div>
             </div>
+            {modalUp && (
+                <Modal modalValues={modalValues} />
+            )}
         </div>
     );
 }

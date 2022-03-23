@@ -52,7 +52,7 @@ export function PokeCard({pokemonName, url}: pokeCardType) {
     }
 
     function handleRaiseModalValues() {
-        setModalValues(modalValuesRef.current)
+        setModalValues(modalValuesRef.current);
         //console.log(modalValues)
     }
 
