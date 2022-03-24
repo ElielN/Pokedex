@@ -1,25 +1,21 @@
-import { useEffect } from "react";
+import { AttributeBar } from "../AttributeBar";
+import './styles.scss';
 
-
-export function Modal({modalValues}: {[key: string | number]: any }) {
-    
-    useEffect(() => {
-        console.log(modalValues)
-    });
-    
+export function Modal({modalValues}: {[key: string | number]: number | string | any }) {
     return (
         <div className="modal-pokemon">
             <div className="modal-sprite">
                 <img src={modalValues.sprite} alt={modalValues.name}/>
             </div>
             <div className="modal-attributes">
-                <p>{modalValues.stats.hp}</p>
-                <p>{modalValues.stats.attack}</p>
-                <p>{modalValues.stats.defense}</p>
-                <p>{modalValues.stats.special_attack}</p>
-                <p>{modalValues.stats.special_defense}</p>
-                <p>{modalValues.stats.speed}</p>
+              <AttributeBar att={modalValues} />
             </div>
         </div>
     );
 }
+
+/* <p>Atk: <AttributeBar /></p>
+<p>Def: <AttributeBar /></p>
+<p>S. Atk: <AttributeBar /></p>
+<p>S. Def: <AttributeBar /></p>
+<p>Speed: <AttributeBar /></p> */
