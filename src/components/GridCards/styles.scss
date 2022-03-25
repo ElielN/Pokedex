@@ -1,7 +1,13 @@
+$breakpoint-mobileM: 360px;
+
 .grid-cards {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
     gap: 30px;
 
     padding: 50px 50px 50px 50px;
+
+    @media screen and (max-width: $breakpoint-mobileM) {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
 }

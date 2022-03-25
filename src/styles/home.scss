@@ -1,3 +1,8 @@
+$breakpoint-tablet: 720px;
+$breakpoint-tablet2: 520px;
+$breakpoint-mobileM: 360px;
+$breakpoint-mobileS: 320px;
+
 #home-page {
     height: 100vh;
     width: 100vw;
@@ -17,6 +22,21 @@
         img {
             height: 200px;
             width: 500px;
+
+            @media screen and (max-width: $breakpoint-tablet2) {
+                height: 200px;
+                width: 350px;
+            }
+
+            @media screen and (max-width: $breakpoint-mobileM) {
+                height: 200px;
+                width: 300px;
+            }
+
+            @media screen and (max-width: $breakpoint-mobileS) {
+                height: 150px;
+                width: 250px;
+            }
         }
     }
 
@@ -39,6 +59,16 @@
             width: 500px;
 
             opacity: 0.4;
+
+            @media screen and (max-width: $breakpoint-tablet2) {
+                height: 300px;
+                width: 300px;
+            }
+
+            @media screen and (max-width: $breakpoint-mobileM) {
+                height: 250px;
+                width: 250px;
+            }
         }
     }
 
@@ -59,6 +89,45 @@
                 height: 80px;
                 width: 80px;
             }
+        }
+    }
+
+    .floating-sound-button {
+        height: 60px;
+        width: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        position: fixed;
+        top: 50px;
+        right: 50px;
+
+        border-radius: 100px;
+        background: #5965ff;
+        cursor: pointer;
+
+        z-index: 1;
+
+        @media screen and (max-width: $breakpoint-tablet) {
+            top: 200px
+        }
+
+        @media screen and (max-width: $breakpoint-tablet2) {
+            top: auto;
+            bottom: 20px;
+            right: 10px;
+        }
+
+        &:hover {
+            filter: brightness(0.9);
+        }
+
+        >img {
+            height: 30px;
+            width: 30px;
+
+            color: white;
         }
     }
 

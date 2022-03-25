@@ -73,7 +73,6 @@ export function PokeCard({pokemonName, url}: pokeCardType) {
         }
 
         modalValuesRef.current = newValues;
-        //console.log(modalValuesRef.current);
     }
 
     function handleRaiseModalValues() {
@@ -83,9 +82,6 @@ export function PokeCard({pokemonName, url}: pokeCardType) {
         } else {
             setModalValues(modalValuesRef.current)
         }
-        
-        
-        //console.log(modalValues)
     }
 
     useEffect(() => {
@@ -119,6 +115,7 @@ export function PokeCard({pokemonName, url}: pokeCardType) {
             setFetchLoading(false);
         };
         fetchPokemonData(url)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [url]);
 
 
