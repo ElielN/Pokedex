@@ -1,20 +1,6 @@
 import { useEffect, useState } from 'react';
 import { colorsMap } from '../PokeCard/colorsMap';
-import { motion } from 'framer-motion';
-import './styles.scss';
-
-type attributesType = {
-    colors: Array<string>,
-    value: number
-};
-
-const barMotion = {
-    hidden: { x: 20, opacity: 0 },
-    visible: {
-        y: 0,
-        opacity: 1
-    }
-};   
+import './styles.scss';  
 
 
 export function AttributeBar({att}: {[key: string | number]: number | string | any }) {
@@ -36,10 +22,12 @@ export function AttributeBar({att}: {[key: string | number]: number | string | a
         const newDef = (280/230) * att.stats.defense;
         const newSpAtk = (280/180) * att.stats.special_attack;
         const newSpDef = (280/230) * att.stats.special_defense;
+        const newSpeed = (280/160) * att.stats.speed;
 
         /* console.log(att.typeOne)
         console.log(att.typeTwo) */
 
+        setSpeed(newSpeed);
         setSpDefense(newSpDef);
         setSpAttack(newSpAtk);
         setDefense(newDef);
@@ -57,7 +45,7 @@ export function AttributeBar({att}: {[key: string | number]: number | string | a
                 />
             </div>
 
-            <p>Attack: {att.stats.attack}</p>
+            <p>Atk: {att.stats.attack}</p>
             <div className="entire-bar">
                 <div 
                 className="value-bar"
@@ -65,7 +53,7 @@ export function AttributeBar({att}: {[key: string | number]: number | string | a
                 />
             </div>
 
-            <p>Defense: {att.stats.defense}</p>
+            <p>Def: {att.stats.defense}</p>
             <div className="entire-bar">
                 <div 
                 className="value-bar"
@@ -73,7 +61,7 @@ export function AttributeBar({att}: {[key: string | number]: number | string | a
                 />
             </div>
 
-            <p>Special Attack: {att.stats.special_attack}</p>
+            <p>Special Atk: {att.stats.special_attack}</p>
             <div className="entire-bar">
                 <div
                 className="value-bar"
@@ -81,11 +69,19 @@ export function AttributeBar({att}: {[key: string | number]: number | string | a
                 />
             </div>
 
-            <p>Special Defense: {att.stats.special_defense}</p>
+            <p>Special Def: {att.stats.special_defense}</p>
             <div className="entire-bar">
                 <div
                 className="value-bar" 
                 style={{background: `linear-gradient(to right, ${colorsMap[att.typeOne]}, ${colorsMap[att.typeTwo]})`, width:`${spDefense}px`}}
+                />
+            </div>
+
+            <p>Speed: {att.stats.speed}</p>
+            <div className="entire-bar">
+                <div
+                className="value-bar" 
+                style={{background: `linear-gradient(to right, ${colorsMap[att.typeOne]}, ${colorsMap[att.typeTwo]})`, width:`${speed}px`}}
                 />
             </div>
         </div>

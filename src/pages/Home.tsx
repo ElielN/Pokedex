@@ -9,6 +9,7 @@ import '../styles/home.scss';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { ModalContext } from '../context/ModalContext';
 import { Modal } from '../components/ModalPokemon';
+import { timeStamp } from 'console';
 
 export function Home() {
 
@@ -29,7 +30,6 @@ export function Home() {
     useEffect(() => {
         if(modalValues!['id'] !== -1) {
             setModalUp(true);
-            //console.log(modalValues);
         } else {
             setModalUp(false);
         }

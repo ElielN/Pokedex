@@ -8,14 +8,22 @@
     
         background: #cfcfcf;
         margin-bottom: 20px;
+        overflow: hidden;
     
         .value-bar {
             height: 10px;
-            //width: 30px;
     
             border-radius: 20px;
-    
-            //background: red;
+
+            animation: animate 1s linear;
+            animation-iteration-count: 1;
+
+            overflow: hidden;
+
+            @keyframes animate{
+                from {margin-left: -90%;}
+                to {margin-left: 0%;}
+            }
     
         }
     }

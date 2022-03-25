@@ -12,6 +12,23 @@ type pokeCardType = {
     url: string
 };
 
+const modalValuesDefault = {
+    id: -1,
+    name: '',
+    sprite: '',
+    typeOne: '',
+    typeTwo: '',
+    stats: {
+        hp: 0,
+        attack: 0,
+        defense: 0,
+        special_attack: 0,
+        special_defense: 0,
+        speed: 0
+    },
+    weight: 0,
+    height: 0
+};
 
 export function PokeCard({pokemonName, url}: pokeCardType) {
 
@@ -60,7 +77,14 @@ export function PokeCard({pokemonName, url}: pokeCardType) {
     }
 
     function handleRaiseModalValues() {
-        setModalValues(modalValuesRef.current);
+        if(modalValues!['id'] !== -1) {
+            setModalValues(modalValuesDefault);
+            setTimeout(() => {setModalValues(modalValuesRef.current)}, 50);
+        } else {
+            setModalValues(modalValuesRef.current)
+        }
+        
+        
         //console.log(modalValues)
     }
 
