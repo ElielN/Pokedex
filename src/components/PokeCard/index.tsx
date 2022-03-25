@@ -30,11 +30,12 @@ export function PokeCard({pokemonName, url}: pokeCardType) {
     const modalValuesRef = useRef({});
 
     function handleUpdateModalValues(data: {[key: string | number]: any }) {
-        const newValues = {
+        let newValues = {
             id: data['id'],
             name: data['name'],
             sprite: data['sprites']['front_default'],
-            //type: [data['types'][0]['type']['name'], data['types'][1]['type']['name']],
+            typeOne: data['types'][0]['type']['name'],
+            typeTwo: null,
             stats: {
                 hp: data['stats'][0]['base_stat'],
                 attack: data['stats'][1]['base_stat'],
@@ -45,6 +46,13 @@ export function PokeCard({pokemonName, url}: pokeCardType) {
             },
             weight: data['weight'],
             height: data['height']
+        }
+        try {
+            if(typeof data['types'][1]['type']['name'] !== 'undefined') {
+                newValues['typeTwo'] = data['types'][1]['type']['name'];
+            }
+        } catch(e) {
+            newValues['typeTwo'] = data['types'][0]['type']['name'];
         }
 
         modalValuesRef.current = newValues;

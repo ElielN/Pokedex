@@ -30,6 +30,8 @@ export function Home() {
         if(modalValues!['id'] !== -1) {
             setModalUp(true);
             //console.log(modalValues);
+        } else {
+            setModalUp(false);
         }
     }, [modalValues]);
 
